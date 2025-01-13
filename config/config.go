@@ -2,7 +2,7 @@ package config
 
 import (
 	"fmt"
-	"github.com/iNgredie/charts-webpkg/http_server"
+	"github.com/iNgredie/charts-web/pkg/http_server"
 	"github.com/joho/godotenv"
 	"github.com/kelseyhightower/envconfig"
 )
