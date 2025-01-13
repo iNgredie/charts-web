@@ -57,5 +57,6 @@ func (s *Server) Close() {
 	if err != nil {
 		log.Error().Err(err).Msg("server - Close - s.server.Shutdown")
 	}
+
 	log.Info().Msg("HTTP Server closed")
 }
