@@ -3,6 +3,7 @@ package config
 import (
 	"fmt"
 	"github.com/iNgredie/charts-web/pkg/http_server"
+	"github.com/iNgredie/charts-web/pkg/postgres"
 	"github.com/joho/godotenv"
 	"github.com/kelseyhightower/envconfig"
 )
@@ -13,8 +14,9 @@ type App struct {
 }
 
 type Config struct {
-	App  App
-	HTTP http_server.Config
+	App      App
+	HTTP     http_server.Config
+	Postgres postgres.Config
 }
 
 func New() (Config, error) {

@@ -2,9 +2,11 @@ package app
 
 import (
 	"context"
+	"fmt"
 	"github.com/go-chi/chi/v5"
 	"github.com/iNgredie/charts-web/config"
 	"github.com/iNgredie/charts-web/pkg/http_server"
+	"github.com/iNgredie/charts-web/pkg/postgres"
 	"github.com/iNgredie/charts-web/pkg/router"
 	"github.com/rs/zerolog/log"
 	"os"
@@ -14,7 +16,7 @@ import (
 
 type Dependencies struct {
 	// Adapters
-	//Postgres *postgres.Pool
+	Postgres *postgres.Pool
 
 	// Controllers
 	RouterHTTP *chi.Mux
@@ -25,6 +27,13 @@ func Run(
 	c config.Config,
 ) (err error) {
 	var deps Dependencies
+
+	// Adapters
+	deps.Postgres, err = postgres.New(ctx, c.Postgres)
+	if err != nil {
+		return fmt.Errorf("postgres.New %w", err)
+	}
+	defer deps.Postgres.Close()
 
 	// Controllers
 
